@@ -1,0 +1,31 @@
+services:
+  postgres:
+    container_name: postgres-sql-tf
+    image: postgres
+    environment:
+      POSTGRES_USER: misha
+      POSTGRES_PASSWORD: misha
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: tasty_fast
+    volumes:
+    - postgres:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - spring-demo
+    restart: unless-stopped
+
+  maildev:
+    container_name: mail-dev-bsn
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+
+networks:
+  spring-demo:
+    driver: bridge
+
+volumes:
+  postgres:
+    driver: local
