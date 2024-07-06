@@ -1,6 +1,6 @@
 package com.misha.tastyfast;
 
-import com.misha.tastyfast.model.Role;
+import com.misha.tastyfast.role.Role;
 import com.misha.tastyfast.repositories.RoleRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

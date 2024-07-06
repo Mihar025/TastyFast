@@ -1,5 +1,6 @@
-package com.misha.tastyfast.model;
+package com.misha.tastyfast.security;
 
+import com.misha.tastyfast.model.User;
 import jakarta.persistence.*;
 import jakarta.websocket.server.ServerEndpoint;
 import lombok.*;

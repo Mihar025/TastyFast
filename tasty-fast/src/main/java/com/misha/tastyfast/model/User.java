@@ -1,5 +1,8 @@
 package com.misha.tastyfast.model;
 
+
+import com.misha.tastyfast.role.Role;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.security.auth.Subject;
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,10 +43,12 @@ public class User implements UserDetails, Principal {
     private String password;
     private boolean accountLocked;
     private boolean enabled;
+    private String street;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
-    @OneToMany(mappedBy = "owner")
-    private List<Food> foods;
+
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdDate;
@@ -50,8 +56,6 @@ public class User implements UserDetails, Principal {
     @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
 
-    @OneToMany(mappedBy = "user")
-    private List<FoodTransactionHistory> histories;
 
     @Override
     public String getName() {

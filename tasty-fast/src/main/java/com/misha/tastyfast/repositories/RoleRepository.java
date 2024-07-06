@@ -1,6 +1,6 @@
 package com.misha.tastyfast.repositories;
 
-import com.misha.tastyfast.model.Role;
+import com.misha.tastyfast.role.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

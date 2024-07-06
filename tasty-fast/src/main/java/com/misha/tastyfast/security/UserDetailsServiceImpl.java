@@ -1,4 +1,4 @@
-package com.misha.tastyfast.repositories.security;
+package com.misha.tastyfast.security;
 
 import com.misha.tastyfast.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;

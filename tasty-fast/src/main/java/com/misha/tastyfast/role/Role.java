@@ -1,6 +1,7 @@
-package com.misha.tastyfast.model;
+package com.misha.tastyfast.role;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.misha.tastyfast.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

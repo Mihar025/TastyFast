@@ -1,8 +1,6 @@
-package com.misha.transactionHistory;
+package com.misha.tastyfast.model;
 
 import com.misha.tastyfast.comon.BaseEntity;
-import com.misha.tastyfast.model.Food;
-import com.misha.tastyfast.model.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -18,15 +16,15 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FoodTransactionHistory extends BaseEntity {
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    @ManyToOne
-    @JoinColumn(name = "food_id")
-    private Food book;
+public class Feedback extends BaseEntity {
 
 
-    private boolean returned;
-    private boolean returnApproved;
+    private double note; // 1-5 stars
+    private String comment; // feed back about book or whatever
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+
 }

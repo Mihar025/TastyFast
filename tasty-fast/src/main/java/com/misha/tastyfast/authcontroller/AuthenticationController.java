@@ -1,4 +1,4 @@
-package com.misha.tastyfast.requests.authcontroller;
+package com.misha.tastyfast.authcontroller;
 
 import com.misha.tastyfast.requests.RegistrationRequest;
 import com.misha.tastyfast.security.AuthenticationRequest;
