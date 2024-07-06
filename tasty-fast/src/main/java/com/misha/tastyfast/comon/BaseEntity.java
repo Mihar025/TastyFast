@@ -1,4 +1,4 @@
-package com.misha.tastyfast.model;
+package com.misha.tastyfast.comon;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
