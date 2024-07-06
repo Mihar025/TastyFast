@@ -1,7 +1,6 @@
-package com.misha.tastyfast.repositories.security;
+package com.misha.tastyfast.security;
 
 import com.misha.tastyfast.exception.*;
-import com.misha.tastyfast.model.Token;
 import com.misha.tastyfast.model.User;
 import com.misha.tastyfast.repositories.RoleRepository;
 import com.misha.tastyfast.repositories.TokenRepository;
