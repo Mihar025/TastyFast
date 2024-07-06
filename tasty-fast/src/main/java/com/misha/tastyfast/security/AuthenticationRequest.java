@@ -1,4 +1,4 @@
-package com.misha.tastyfast.repositories.security;
+package com.misha.tastyfast.security;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
