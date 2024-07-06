@@ -1,4 +1,4 @@
-package com.misha.tastyfast.repositories.security;
+package com.misha.tastyfast.security;
 
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
