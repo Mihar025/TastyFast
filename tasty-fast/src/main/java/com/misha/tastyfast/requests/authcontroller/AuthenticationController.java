@@ -1,10 +1,9 @@
-package com.misha.tastyfast.authcontroller;
+package com.misha.tastyfast.requests.authcontroller;
 
-import com.misha.tastyfast.exception.UserAlreadyExistException;
 import com.misha.tastyfast.requests.RegistrationRequest;
-import com.misha.tastyfast.repositories.security.AuthenticationRequest;
-import com.misha.tastyfast.repositories.security.AuthenticationResponse;
-import com.misha.tastyfast.repositories.security.AuthenticationService;
+import com.misha.tastyfast.security.AuthenticationRequest;
+import com.misha.tastyfast.security.AuthenticationResponse;
+import com.misha.tastyfast.security.AuthenticationService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
