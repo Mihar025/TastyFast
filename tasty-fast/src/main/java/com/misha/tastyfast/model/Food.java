@@ -1,13 +1,15 @@
 package com.misha.tastyfast.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.misha.tastyfast.comon.BaseEntity;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -15,22 +17,20 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Food extends BaseEntity{
+@Table(name = "_food")
+@EntityListeners(AuditingEntityListener.class)
+public class Food extends BaseEntity {
 
     private String foodName;
-
-    private String restaurantName;
     private double price;
-
-    private String FoodDescription;
+    private BigDecimal calories;
+    private String foodDescription;
     private String foodCover;
-
     private boolean inStock;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private User owner;
-
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 
 
 
