@@ -1,5 +1,8 @@
-package com.misha.tastyfast.model;
+package com.misha.transactionHistory;
 
+import com.misha.tastyfast.comon.BaseEntity;
+import com.misha.tastyfast.model.Food;
+import com.misha.tastyfast.model.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -15,7 +18,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FoodTransactionHistory extends BaseEntity{
+public class FoodTransactionHistory extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
