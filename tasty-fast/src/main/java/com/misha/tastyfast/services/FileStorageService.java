@@ -33,6 +33,26 @@ public class FileStorageService {
         return uploadFile(sourceFile, fileUploadsPath);
     }
 
+    public String saveDishesFile(
+            @NonNull MultipartFile sourceFile,
+            @NonNull Dishes dishes,
+            @NonNull Integer id
+    ) {
+        final String fileUploadSubPath = "user" + separator + id;
+        return uploadFile(sourceFile, fileUploadsPath);
+    }
+
+    public String saveDishesFile(
+            @NonNull MultipartFile sourceFile,
+            @NonNull Drink drink,
+            @NonNull Integer id
+    ) {
+        final String fileUploadSubPath = "user" + separator + id;
+        return uploadFile(sourceFile, fileUploadsPath);
+    }
+
+
+
 
     private String uploadFile(@NonNull MultipartFile sourceFile,
                               @NonNull String fileUploadPath) {
