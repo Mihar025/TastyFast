@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> , JpaSpecificationExecutor<Product> {
     @Query("""
@@ -16,4 +18,14 @@ public interface ProductRepository extends JpaRepository<Product, Integer> , Jpa
         WHERE product.inStock = true 
 """)
     Page<Product> findAllDisplayableBooks(Pageable pageable, Integer id);
+    @Query(
+            """
+            SELECT product
+            from Product product
+            WHERE product.store.id =: storeId
+    """
+    )
+    Page<Product> findAllProductsInStore(Pageable pageable, Integer storeId);
+
+    Optional<Product> findByIdAndStoreId(Integer productId, Integer storeId);
 }
