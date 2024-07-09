@@ -29,6 +29,7 @@ public class Drink extends BaseEntity {
     private String drinksCover;
     private boolean inStock;
     private String category;
+    private boolean isAlcohol;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
@@ -44,6 +45,9 @@ public class Drink extends BaseEntity {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
     @Transient
     public double getRate() {
         if (feedbacks == null || feedbacks.isEmpty()) {
