@@ -6,7 +6,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 public interface DrinkRepository extends JpaRepository<Drink, Integer>, JpaSpecificationExecutor<Drink>{
@@ -21,5 +24,29 @@ public interface DrinkRepository extends JpaRepository<Drink, Integer>, JpaSpeci
             )
     Page<Drink> findAllDisplayableDrinks(Pageable pageable, Integer id);
 
+    @Query(
+            """ 
+        SELECT drinks
+        FROM Drink drinks
+        WHERE drinks.restaurant.id =: restaurantId
+    """
+    )
+    Page<Drink> findAllDrinksInRestaurant(Pageable pageable, @Param("restaurantId") Integer restaurantId);
 
+
+    Optional<Drink> findByIdAndRestaurantId(Integer drinkId, Integer restaurantId);
+
+    @Query(
+
+            """
+            select drinks
+            from Drink  drinks
+            WHERE drinks.store.id=: storeId
+            """
+    )
+    Page<Drink> findAllDrinksInStore(Pageable pageable, Integer storeId);
+
+
+
+    Optional<Drink> findByIdAndStoreId(Integer drinkId, Integer storeId);
 }
