@@ -1,14 +1,12 @@
 package com.misha.tastyfast.services;
 
 import com.misha.tastyfast.comon.ProductSpecification;
-import com.misha.tastyfast.exception.OperationNotPermittedException;
 import com.misha.tastyfast.mapping.ProductMapper;
 import com.misha.tastyfast.model.Product;
 import com.misha.tastyfast.model.User;
 
-import com.misha.tastyfast.repositories.ProducTransactionHistoryRepository;
+import com.misha.tastyfast.transactionHistory.ProductTransactionHistoryRepository;
 import com.misha.tastyfast.repositories.ProductRepository;
-import com.misha.tastyfast.repositories.ProductTransactionHistory;
 import com.misha.tastyfast.requests.PageResponse;
 import com.misha.tastyfast.requests.ProductRequest;
 import com.misha.tastyfast.requests.ProductResponse;
@@ -22,7 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
-import java.util.Objects;
+
 
 
 @Service
@@ -30,7 +28,7 @@ import java.util.Objects;
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final ProducTransactionHistoryRepository producTransactionHistoryRepository;
+    private final ProductTransactionHistoryRepository productTransactionHistoryRepository;
     private final ProductMapper productMapper;
     private final FileStorageService fileStorageService;
 
@@ -42,7 +40,8 @@ public class ProductService {
         return productRepository.save(product).getId();
     }
 
-    public ProductResponse findProductById(Integer productId){
+    public ProductResponse findProductById(Integer productId, Authentication connectedUser){
+        User user = ((User) connectedUser.getPrincipal());
         return productRepository.findById(productId)
                 .map(productMapper::toProductResponse)
                 .orElseThrow(() -> new EntityNotFoundException("No product founded with id: " + productId));
@@ -78,7 +77,7 @@ public class ProductService {
                 .toList();
         return new PageResponse<>();
     }
-
+/*
     public Integer makeOrder(Integer productId, Authentication connectedUser){
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new EntityNotFoundException("Product with ID::" + productId + " do not exist"));
@@ -89,7 +88,7 @@ public class ProductService {
         if(Objects.equals(product.getOwner().getId(), user.getId())){
             throw new OperationNotPermittedException("You cannot ordering twice the same order");
         }
-        final boolean isAlreadyOrdered = producTransactionHistoryRepository.isAlreadyOrderedByUser(productId, user.getId());
+        final boolean isAlreadyOrdered = productTransactionHistoryRepository.isAlreadyOrderedByUser(productId, user.getId());
         if(isAlreadyOrdered){
             throw new OperationNotPermittedException("You already made order");
         }
@@ -100,12 +99,12 @@ public class ProductService {
                 .returned(false)
                 .alreadyOrdered(false)
                 .build();
-        return producTransactionHistoryRepository.save(productTransactionHistory).getId();
+        return productTransactionHistoryRepository.save(productTransactionHistory).getId();
 
     }
 
 
-
+*/
 
 
 
