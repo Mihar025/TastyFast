@@ -9,7 +9,7 @@ public record DishesRequest (
         Integer id,
         @NotNull(message = "100")
         @NotEmpty(message = "100")
-        String  dishesName,
+        String dishesName,
         @NotNull(message = "101")
         @NotEmpty(message = "101")
         String dishesDescription,
