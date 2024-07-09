@@ -31,7 +31,7 @@ public class Dishes extends BaseEntity {
     private String dishesCover;
     private boolean inStock;
     private String category;
-    private boolean isVegetarian;
+
 
 
     @ManyToOne
