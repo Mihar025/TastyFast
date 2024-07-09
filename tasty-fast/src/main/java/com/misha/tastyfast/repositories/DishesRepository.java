@@ -8,7 +8,10 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 public interface DishesRepository extends JpaRepository<Dishes, Integer> , JpaSpecificationExecutor<Dishes> {
@@ -21,6 +24,14 @@ public interface DishesRepository extends JpaRepository<Dishes, Integer> , JpaSp
             """)
     Page<Dishes> findAllDisplayableDishes(Pageable pageable, Integer id);
 
+    @Query(
+            """
+            SELECT dishes
+            FROM Dishes  dishes
+            WHERE dishes.restaurant.id =: restaurantId
+            """
+    )
+    Page<Dishes> findAllDishesInRestaurant(Pageable pageable, @Param("restaurantId") Integer restaurantId);
 
-
+    Optional<Dishes> findByIdAndRestaurantId(Integer dishId, Integer restaurantId);
 }
