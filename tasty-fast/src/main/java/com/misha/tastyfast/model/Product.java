@@ -1,7 +1,7 @@
 package com.misha.tastyfast.model;
 
 import com.misha.tastyfast.comon.BaseEntity;
-import com.misha.tastyfast.repositories.ProductTransactionHistory;
+import com.misha.tastyfast.transactionHistory.ProductTransactionHistory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,9 +11,7 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-
 
 @Getter
 @Setter
@@ -26,26 +24,30 @@ import java.util.List;
 public class Product extends BaseEntity {
 
     private String productName;
-    private String productOwner; //Restaurnt or store owner
+    private String productOwner;
     private String productDescription;
     private double price;
     private BigDecimal calories;
     private String productCover;
     private boolean inStock;
 
-
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
+
     @OneToMany(mappedBy = "product")
     private List<Feedback> feedbacks;
+
     @OneToMany(mappedBy = "product")
     private List<ProductTransactionHistory> histories;
 
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 
     @Transient
-    public double getRate(){
-        if(feedbacks == null || feedbacks.isEmpty()){
+    public double getRate() {
+        if (feedbacks == null || feedbacks.isEmpty()) {
             return 0.0;
         }
         var rate = this.feedbacks.stream()
@@ -53,9 +55,6 @@ public class Product extends BaseEntity {
                 .average()
                 .orElse(0.0);
 
-        double roundedRate = Math.round(rate * 10.0)/10.0;
-        return roundedRate;
+        return Math.round(rate * 10.0) / 10.0;
     }
-
-
 }
