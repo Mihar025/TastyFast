@@ -14,8 +14,8 @@ public class DishesRequestForRestaurant {
     private String description;
     private Double price;
     private String category;
-    private List<String> ingredients;
     private BigDecimal calories;
-    private boolean isVegetarian;
+    private boolean inStock;
+    private String dishesCover;
 
 }
