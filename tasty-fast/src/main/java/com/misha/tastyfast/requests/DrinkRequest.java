@@ -20,6 +20,10 @@ public record DrinkRequest(
         @NotEmpty(message = "103")
         BigDecimal calories,
 
-        boolean inStock
+        String category,
+
+        boolean inStock,
+        boolean isAlcohol
+
 ) {
 }
