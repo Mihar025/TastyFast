@@ -1,8 +1,6 @@
 package com.misha.tastyfast.model;
 
-
 import com.misha.tastyfast.role.Role;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,10 +13,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.security.auth.Subject;
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,14 +46,23 @@ public class User implements UserDetails, Principal {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
 
-
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdDate;
+
     @LastModifiedDate
     @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
 
+    @OneToMany(mappedBy = "owner")
+    private List<Restaurant> restaurants;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Store> stores;
+
+
+    @OneToMany(mappedBy = "user")
+    private List<Feedback> feedbacks;
 
     @Override
     public String getName() {
@@ -105,13 +112,11 @@ public class User implements UserDetails, Principal {
         return enabled;
     }
 
-    public String fullName(){
+    public String fullName() {
         return getFirstname() + " " + getLastname();
     }
 
-    public String getFullName(){
+    public String getFullName() {
         return firstname + " " + lastname;
     }
-
-
 }
