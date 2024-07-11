@@ -12,7 +12,7 @@ import java.util.List;
 public class DishesRequestForRestaurant {
     private String name;
     private String description;
-    private Double price;
+    private BigDecimal price;
     private String category;
     private BigDecimal calories;
     private boolean inStock;
