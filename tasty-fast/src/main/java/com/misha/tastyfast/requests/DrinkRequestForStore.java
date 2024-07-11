@@ -7,7 +7,7 @@ public record DrinkRequestForStore(
     String  drinkName,
 
     String drinkDescription,
-    double price,
+    BigDecimal price,
     String drinkCategory,
     BigDecimal calories,
     boolean inStock,
