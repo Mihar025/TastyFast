@@ -26,7 +26,7 @@ public class Dishes extends BaseEntity {
     private String dishesName;
     private String dishesOwner;
     private String dishesDescription;
-    private double price;
+    private BigDecimal price;
     private BigDecimal calories;
     private String dishesCover;
     private boolean inStock;
