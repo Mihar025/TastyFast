@@ -13,7 +13,7 @@ public class DishesResponse {
     private Integer id;
     private String dishesName;
     private String dishesDescription;
-    private double price;
+    private BigDecimal price;
     private BigDecimal calories;
     private String owner;
     private boolean inStock;
