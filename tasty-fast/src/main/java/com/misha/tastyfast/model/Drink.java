@@ -24,7 +24,7 @@ public class Drink extends BaseEntity {
     private String drinksName;
     private String drinksOwner;
     private String drinksDescription;
-    private double price;
+    private BigDecimal price;
     private BigDecimal calories;
     private String drinksCover;
     private boolean inStock;
