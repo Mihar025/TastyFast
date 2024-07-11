@@ -68,7 +68,7 @@ public class DrinkService {
     }
 
 
-    public PageResponse<DrinksResponse> findAllProductByOwner (int page, int size, Authentication connectedUser){
+    public PageResponse<DrinksResponse> findAllDrinkByOwner (int page, int size, Authentication connectedUser){
         User user = ((User) connectedUser.getPrincipal());
         Pageable pageable= PageRequest.of(page, size, Sort.by("createdDate").descending());
         Page<Drink> drinks = drinkRepository.findAll(DrinkSpecification.withOwnerId(user.getId()), pageable);
