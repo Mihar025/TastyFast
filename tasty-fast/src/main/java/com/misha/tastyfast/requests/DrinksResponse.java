@@ -14,7 +14,7 @@ public class DrinksResponse {
     private Integer id;
     private String drinkName;
     private String drinkDescription;
-    private double price;
+    private BigDecimal price;
     private BigDecimal calories;
     private String owner;
     private boolean inStock;
