@@ -15,7 +15,7 @@ public record DishesRequest (
         String dishesDescription,
         @NotNull(message = "102")
         @NotEmpty(message = "102")
-        double price,
+        BigDecimal price,
         @NotNull(message = "103")
         @NotEmpty(message = "103")
         BigDecimal calories,
