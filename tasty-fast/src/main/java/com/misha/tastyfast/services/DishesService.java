@@ -43,7 +43,7 @@ public class DishesService {
         User user = ((User) connectedUser.getPrincipal());
         return dishesRepository.findById(dishesId)
                 .map(dishesMapper::toDishesResponse)
-                .orElseThrow(() -> new EntityNotFoundException("Cannot find dish with provided id"));
+                .orElseThrow(() -> new EntityNotFoundException("Cannot find dish with provided restaurantId"));
     }
 
     public PageResponse<DishesResponse> findAllDishes(int page, int size, Authentication connectedUser){
