@@ -18,6 +18,5 @@ public class DrinksResponse {
     private BigDecimal calories;
     private String owner;
     private boolean inStock;
-    private byte[] cover;
     private double rate;
 }
