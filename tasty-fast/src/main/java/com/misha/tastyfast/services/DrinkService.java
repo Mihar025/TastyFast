@@ -42,7 +42,7 @@ public class DrinkService {
 
         return drinkRepository.findById(drinkId)
                 .map(drinkMapper::toDrinkResponse)
-                .orElseThrow(() -> new EntityNotFoundException("No drink with provided id: " + drinkId));
+                .orElseThrow(() -> new EntityNotFoundException("No drink with provided restaurantId: " + drinkId));
     }
 
 
