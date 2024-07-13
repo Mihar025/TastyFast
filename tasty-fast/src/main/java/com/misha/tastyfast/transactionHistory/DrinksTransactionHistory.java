@@ -13,6 +13,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -31,6 +33,7 @@ public class DrinksTransactionHistory extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "drink_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Drink drink;
 
     @ManyToOne
@@ -39,7 +42,8 @@ public class DrinksTransactionHistory extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
-
+    private boolean alreadyOrdered;
+    private boolean returned;
     private String transactionType;
     private LocalDateTime transactionDate;
     private BigDecimal amount;
