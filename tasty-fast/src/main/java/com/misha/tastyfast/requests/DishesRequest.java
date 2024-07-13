@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public record DishesRequest (
+public record DishesRequest(
         Integer id,
         @NotNull(message = "100")
         @NotEmpty(message = "100")
@@ -20,6 +20,9 @@ public record DishesRequest (
         @NotEmpty(message = "103")
         BigDecimal calories,
 
-        boolean inStock
-){
+        boolean inStock,
+
+        String category
+
+) {
 }
