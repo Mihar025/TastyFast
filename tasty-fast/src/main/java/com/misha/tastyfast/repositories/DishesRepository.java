@@ -24,14 +24,10 @@ public interface DishesRepository extends JpaRepository<Dishes, Integer> , JpaSp
             """)
     Page<Dishes> findAllDisplayableDishes(Pageable pageable, Integer id);
 
-    @Query(
-            """
-            SELECT dishes
-            FROM Dishes  dishes
-            WHERE dishes.restaurant.id =: restaurantId
-            """
-    )
+    @Query("SELECT d FROM Dishes d WHERE d.restaurant.id = :restaurantId")
     Page<Dishes> findAllDishesInRestaurant(Pageable pageable, @Param("restaurantId") Integer restaurantId);
+
+
 
     Optional<Dishes> findByIdAndRestaurantId(Integer dishId, Integer restaurantId);
 }
