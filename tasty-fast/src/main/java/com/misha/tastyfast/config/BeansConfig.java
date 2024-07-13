@@ -61,6 +61,7 @@ public class BeansConfig {
                 buildCache("store_allProducts", 100, 30),
                 buildCache("store_product_update", 200, 15),
                 buildCache("store_drink_byId", 300, 20),
+                buildCache("store_product_byId", 300, 20),
                 buildCache("store_allDrinks", 200, 30),
                 buildCache("store_drinks_update", 300, 30),
                 buildCache("store_update", 200, 15),
@@ -74,7 +75,8 @@ public class BeansConfig {
                 buildCache("restaurant_drink_byId", 300, 20),
                 buildCache("restaurant_allDrinks", 200, 30),
                 buildCache("restaurant_drinks_update", 300, 30),
-                buildCache("restaurant_allRestaurantsNoDelivery", 300, 30)
+                buildCache("restaurant_allRestaurantsNoDelivery", 300, 30),
+                buildCache("restaurant:drinks_update", 600, 30)
         );
 
         cacheManager.setCaches(caches);
