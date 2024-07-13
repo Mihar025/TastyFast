@@ -38,6 +38,9 @@ public class DishesTransactionHistory extends BaseEntity {
 
     private String transactionType;
     private LocalDateTime transactionDate;
+    private boolean already_ordered;
+    private boolean returned;
+    private boolean already_returned;
     private BigDecimal amount;
     private String details;
 }
