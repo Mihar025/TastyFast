@@ -35,10 +35,10 @@ public class Drink extends BaseEntity {
     @JoinColumn(name = "owner_id")
     private User owner;
 
-    @OneToMany(mappedBy = "drink")
+    @OneToMany(mappedBy = "drink", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Feedback> feedbacks;
 
-    @OneToMany(mappedBy = "drink")
+    @OneToMany(mappedBy = "drink", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DrinksTransactionHistory> histories;
 
     @ManyToOne
