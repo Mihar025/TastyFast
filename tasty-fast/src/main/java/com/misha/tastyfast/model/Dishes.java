@@ -41,7 +41,7 @@ public class Dishes extends BaseEntity {
     @OneToMany(mappedBy = "dishes")
     private List<Feedback> feedbacks;
 
-    @OneToMany(mappedBy = "dishes")
+    @OneToMany(mappedBy = "dishes", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DishesTransactionHistory> histories;
 
     @ManyToOne
