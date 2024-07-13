@@ -30,7 +30,6 @@ public class DrinkMapper {
                 .calories(request.getCalories())
                 .owner(request.getDrinksOwner())
                 .inStock(request.isInStock())
-                .cover(FileUtils.readFileFromLocation(request.getDrinksCover()))
                 .rate(request.getRate())
                 .build();
     }
