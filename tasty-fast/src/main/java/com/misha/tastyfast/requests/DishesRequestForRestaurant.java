@@ -16,6 +16,6 @@ public class DishesRequestForRestaurant {
     private String category;
     private BigDecimal calories;
     private boolean inStock;
-    private String dishesCover;
+
 
 }
