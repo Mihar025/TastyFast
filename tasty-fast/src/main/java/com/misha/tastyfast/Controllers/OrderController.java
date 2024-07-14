@@ -18,8 +18,8 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody OrderRequest orderRequest, Authentication authentication) {
-        Order createdOrder = orderService.createOrder(orderRequest, authentication);
+    public ResponseEntity<OrderResponse> createOrder(@RequestBody OrderRequest orderRequest, Authentication authentication) {
+        OrderResponse createdOrder = orderService.createOrder(orderRequest, authentication);
         return ResponseEntity.ok(createdOrder);
     }
 
