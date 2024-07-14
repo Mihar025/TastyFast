@@ -42,4 +42,3 @@ application:
       photos-output-path: ./uploads
 server:
   port: 8088
-
