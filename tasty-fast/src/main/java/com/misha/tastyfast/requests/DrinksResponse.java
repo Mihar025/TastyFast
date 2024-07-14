@@ -19,4 +19,5 @@ public class DrinksResponse {
     private String owner;
     private boolean inStock;
     private double rate;
+
 }
