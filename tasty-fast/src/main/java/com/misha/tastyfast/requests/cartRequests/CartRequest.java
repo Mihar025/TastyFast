@@ -1,8 +1,8 @@
-package com.misha.tastyfast.requests;
+package com.misha.tastyfast.requests.cartRequests;
 
+import com.misha.tastyfast.requests.cartRequests.CartItemRequest;
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.boot.autoconfigure.liquibase.LiquibaseDataSource;
 
 import java.util.List;
 
