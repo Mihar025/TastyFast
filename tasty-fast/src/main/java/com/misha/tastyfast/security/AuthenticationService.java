@@ -1,11 +1,16 @@
 package com.misha.tastyfast.security;
 
-import com.misha.tastyfast.exception.*;
+import com.misha.tastyfast.exception.AccountDissabledException;
+import com.misha.tastyfast.exception.EmailorPasswordAlreadyExistException;
+import com.misha.tastyfast.exception.UserAlreadyExistException;
 import com.misha.tastyfast.model.User;
+import com.misha.tastyfast.model.UserRoles;
 import com.misha.tastyfast.repositories.RoleRepository;
 import com.misha.tastyfast.repositories.TokenRepository;
 import com.misha.tastyfast.repositories.UserRepository;
-import com.misha.tastyfast.requests.RegistrationRequest;
+import com.misha.tastyfast.requests.registrationRequests.RegistrationBusinessAccountRequest;
+import com.misha.tastyfast.requests.registrationRequests.RegistrationRequest;
+import com.misha.tastyfast.role.Role;
 import com.misha.tastyfast.services.EmailService;
 import com.misha.tastyfast.services.EmailTemplateName;
 import jakarta.mail.MessagingException;
@@ -22,6 +27,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,34 +47,30 @@ public class AuthenticationService {
     private String activationUrl;
 
 
-    public void register(RegistrationRequest request) throws MessagingException {
+    public void register(RegistrationRequest request, UserRoles userRoles ) throws MessagingException {
         if(userRepository.findByEmail(request.getEmail()).isPresent()){
-            throw new EmailorPasswordAlreadyExistException("User with email: " + request.getEmail() + " already exist");
+            throw new EmailorPasswordAlreadyExistException("User with email: " +  request.getEmail() + " already exist");
         }
-        if(userRepository.findById(request.getId()).isPresent()){
-            throw new UserAlreadyExistException("User already exist, change credentials");
-        }
-        var userRole = roleRepository.findByName("USER")
-                .orElseThrow(() -> new IllegalStateException("ROLE USER was not initiated"));
-            var user = User.builder()
-                    .firstname(request.getFirstname())
-                    .lastname(request.getLastname())
-                    .email(request.getEmail())
-                    .password(passwordEncoder.encode(request.getPassword()))
-                    .accountLocked(false)
-                    .enabled(false)
-                    .roles(List.of(userRole))
-                    .build();
+        Role userRole = roleRepository.findByName(userRoles.name())
+                .orElseThrow(() -> new IllegalStateException("ROLE"+ userRoles.name()+  " was not initiated"));
+
+        var user = User.builder()
+                .firstname(request.getFirstname())
+                .lastname(request.getLastname())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .accountLocked(false)
+                .enabled(false)
+                .roles(Collections.singletonList(userRole))
+                .build();
+
         try {
             userRepository.save(user);
             sendValidationEmail(user);
+        } catch (DataIntegrityViolationException e){
+            throw new EmailorPasswordAlreadyExistException("User with email: " + request.getEmail() + " already exist");
         }
-        catch (DataIntegrityViolationException e){
-            throw new EmailorPasswordAlreadyExistException("User with email: " + request.getEmail() + "already exist");
-        }
-
     }
-
     private String generateAndSaveActivationToken(User user) {
         // Generate a token
         String generatedToken = generateActivationCode(6);
@@ -136,6 +138,32 @@ public class AuthenticationService {
 
 
     }
+
+    public AuthenticationResponse authenticateBusinessAccount(AuthenticationRequest authenticationRequest){
+        try {
+            var auth = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            authenticationRequest.getEmail(),
+                            authenticationRequest.getPassword()
+                    )
+
+            );
+            var claims = new HashMap<String, Object>();
+            var user = ((User) auth.getPrincipal());
+            claims.put("fullName", user.getFullName());
+
+            var jwtToken = jwtService.generateToken(claims, user);
+
+            return AuthenticationResponse.builder()
+                    .token(jwtToken).build();
+        } catch (BadCredentialsException e){
+            throw new EmailorPasswordAlreadyExistException("Invalid email or password");
+        } catch (DisabledException e){
+            throw new AccountDissabledException("Account is disabled");
+        }
+
+    }
+
     // @Transactional
     public void activateAccount(String token) throws MessagingException {
         Token savedToken = tokenRepository.findByToken(token)
@@ -152,4 +180,19 @@ public class AuthenticationService {
         savedToken.setValidatedAt(LocalDateTime.now());
         tokenRepository.save(savedToken);
     }
+
+
+    public void registerUser(RegistrationRequest request) throws MessagingException{
+        register(request, UserRoles.USER);
+    }
+
+    public void registerBusinessAccount(RegistrationRequest request) throws MessagingException{
+        register(request, UserRoles.BUSINESS_OWNER);
+    }
+
+
+    public void registerAdmin(RegistrationRequest request) throws MessagingException{
+        register(request, UserRoles.ADMIN);
+    }
+
 }
