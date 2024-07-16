@@ -47,6 +47,7 @@ public class AuthenticationService {
     private String activationUrl;
 
 
+
     public void register(RegistrationRequest request, UserRoles userRoles ) throws MessagingException {
         if(userRepository.findByEmail(request.getEmail()).isPresent()){
             throw new EmailorPasswordAlreadyExistException("User with email: " +  request.getEmail() + " already exist");
@@ -195,4 +196,11 @@ public class AuthenticationService {
         register(request, UserRoles.ADMIN);
     }
 
+    public void logout(String token) {
+        String tokenWithoutBearer = token.substring(7);
+        Token token1 = tokenRepository.findByToken(tokenWithoutBearer)
+                .orElseThrow(() -> new RuntimeException("Invalid toke"));
+        token1.setExpiresAt(LocalDateTime.now());
+        tokenRepository.save(token1);
+    }
 }
