@@ -1,4 +1,4 @@
-package com.misha.tastyfast.requests;
+package com.misha.tastyfast.requests.drinkRequests;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
