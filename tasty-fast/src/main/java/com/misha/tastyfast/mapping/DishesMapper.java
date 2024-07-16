@@ -1,8 +1,8 @@
 package com.misha.tastyfast.mapping;
 
 import com.misha.tastyfast.model.Dishes;
-import com.misha.tastyfast.requests.DishesRequest;
-import com.misha.tastyfast.requests.DishesResponse;
+import com.misha.tastyfast.requests.dishesRequests.DishesRequest;
+import com.misha.tastyfast.requests.dishesRequests.DishesResponse;
 import com.misha.tastyfast.services.FileUtils;
 import org.springframework.stereotype.Service;
 
