@@ -1,9 +1,8 @@
-package com.misha.tastyfast.requests;
+package com.misha.tastyfast.requests.dishesRequests;
 
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
