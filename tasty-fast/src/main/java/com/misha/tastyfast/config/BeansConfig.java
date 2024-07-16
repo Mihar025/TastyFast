@@ -2,12 +2,13 @@ package com.misha.tastyfast.config;
 
 
 import com.github.benmanes.caffeine.cache.Caffeine;
+import com.misha.tastyfast.model.User;
+import com.misha.tastyfast.requests.userRequests.UserResponse;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.caffeine.CaffeineCache;
-import org.springframework.cache.caffeine.CaffeineCacheManager;
-import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,11 +17,15 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.nio.file.AccessDeniedException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
@@ -76,8 +81,11 @@ public class BeansConfig {
                 buildCache("restaurant_allDrinks", 200, 30),
                 buildCache("restaurant_drinks_update", 300, 30),
                 buildCache("restaurant_allRestaurantsNoDelivery", 300, 30),
-                buildCache("restaurant:drinks_update", 600, 30)
-        );
+                buildCache("restaurant:drinks_update", 600, 30),
+                buildCache("user_findById", 300, 30),
+                buildCache("user_firstName", 300, 30),
+                buildCache("users" , 300, 30)
+                );
 
         cacheManager.setCaches(caches);
         return cacheManager;
