@@ -1,4 +1,4 @@
-package com.misha.tastyfast.requests;
+package com.misha.tastyfast.requests.cartRequests;
 
 import lombok.Builder;
 import lombok.Data;
