@@ -84,7 +84,8 @@ public class BeansConfig {
                 buildCache("restaurant:drinks_update", 600, 30),
                 buildCache("user_findById", 300, 30),
                 buildCache("user_firstName", 300, 30),
-                buildCache("users" , 300, 30)
+                buildCache("users" , 300, 30),
+                buildCache("restaurants" , 300, 30)
                 );
 
         cacheManager.setCaches(caches);
