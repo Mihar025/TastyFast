@@ -2,8 +2,8 @@ package com.misha.tastyfast.mapping;
 
 import com.misha.tastyfast.model.Cart;
 import com.misha.tastyfast.model.CartItem;
-import com.misha.tastyfast.requests.CartItemResponse;
-import com.misha.tastyfast.requests.CartResponse;
+import com.misha.tastyfast.requests.cartRequests.CartItemResponse;
+import com.misha.tastyfast.requests.cartRequests.CartResponse;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
