@@ -54,6 +54,11 @@ public class AuthenticationController {
     ) throws MessagingException {
         authenticationService.activateAccount(token);
     }
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout (@RequestHeader("Authorization") String token){
+        authenticationService.logout(token);
+        return ResponseEntity.ok("Logout successfully");
+    }
 
 
 
