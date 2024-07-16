@@ -1,9 +1,9 @@
 package com.misha.tastyfast.Controllers;
 
 import com.misha.tastyfast.model.User;
-import com.misha.tastyfast.requests.CartItemRequest;
-import com.misha.tastyfast.requests.CartRequest;
-import com.misha.tastyfast.requests.CartResponse;
+import com.misha.tastyfast.requests.cartRequests.CartItemRequest;
+import com.misha.tastyfast.requests.cartRequests.CartRequest;
+import com.misha.tastyfast.requests.cartRequests.CartResponse;
 import com.misha.tastyfast.services.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
