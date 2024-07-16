@@ -1,4 +1,4 @@
-package com.misha.tastyfast.requests;
+package com.misha.tastyfast.requests.dishesRequests;
 
 import lombok.*;
 
