@@ -1,6 +1,5 @@
 package com.misha.tastyfast.repositories;
 
-import com.misha.tastyfast.model.Dishes;
 import com.misha.tastyfast.model.Drink;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
