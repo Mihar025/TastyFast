@@ -1,9 +1,8 @@
 package com.misha.tastyfast.mapping;
 
 import com.misha.tastyfast.model.Drink;
-import com.misha.tastyfast.requests.DrinkRequest;
-import com.misha.tastyfast.requests.DrinksResponse;
-import com.misha.tastyfast.services.FileUtils;
+import com.misha.tastyfast.requests.drinkRequests.DrinkRequest;
+import com.misha.tastyfast.requests.drinkRequests.DrinksResponse;
 import org.springframework.stereotype.Service;
 
 @Service
