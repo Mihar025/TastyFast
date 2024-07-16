@@ -1,8 +1,8 @@
 package com.misha.tastyfast.Controllers;
 
-import com.misha.tastyfast.requests.DishesRequest;
-import com.misha.tastyfast.requests.DishesResponse;
-import com.misha.tastyfast.requests.PageResponse;
+import com.misha.tastyfast.requests.dishesRequests.DishesRequest;
+import com.misha.tastyfast.requests.dishesRequests.DishesResponse;
+import com.misha.tastyfast.requests.pageResponse.PageResponse;
 import com.misha.tastyfast.services.DishesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
