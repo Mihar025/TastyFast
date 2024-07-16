@@ -1,14 +1,19 @@
 package com.misha.tastyfast.services;
 
 import com.misha.tastyfast.mapping.CartMapper;
-import com.misha.tastyfast.model.Cart;
-import com.misha.tastyfast.model.CartItem;
-import com.misha.tastyfast.model.User;
+import com.misha.tastyfast.model.*;
 import com.misha.tastyfast.repositories.CartRepository;
-import com.misha.tastyfast.requests.*;
+import com.misha.tastyfast.requests.cartRequests.CartItemRequest;
+import com.misha.tastyfast.requests.cartRequests.CartItemResponse;
+import com.misha.tastyfast.requests.cartRequests.CartRequest;
+import com.misha.tastyfast.requests.cartRequests.CartResponse;
+import com.misha.tastyfast.requests.dishesRequests.DishesResponse;
+import com.misha.tastyfast.requests.drinkRequests.DrinksResponse;
+import com.misha.tastyfast.requests.productRequests.ProductResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 
 @Service
@@ -76,6 +81,22 @@ public class CartService {
         cartRepository.save(cart);
     }
 
+    public OrderItem createOrderItemFromCartItem(CartItemResponse cartItemResponse, Order order){
+        OrderItem orderItem = new OrderItem();
+        orderItem.setOrder(order);
+        orderItem.setItemName(cartItemResponse.getItemType());
+        orderItem.setItemType(cartItemResponse.getItemType());
+        orderItem.setId(cartItemResponse.getId());
+        orderItem.setQuantity(cartItemResponse.getQuantity());
+        orderItem.setPrice(cartItemResponse.getPrice());
+        return orderItem;
+    }
+
+
+
+
+
+
 
     private Cart createCart(User user) {
         Cart cart = new Cart();
@@ -121,4 +142,8 @@ public class CartService {
                .findFirst()
                 .orElse(null);
     }
+
+
+
+
 }
