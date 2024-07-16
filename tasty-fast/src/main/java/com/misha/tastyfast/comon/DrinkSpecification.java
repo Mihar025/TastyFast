@@ -1,6 +1,5 @@
 package com.misha.tastyfast.comon;
 
-import com.misha.tastyfast.model.Dishes;
 import com.misha.tastyfast.model.Drink;
 import org.springframework.data.jpa.domain.Specification;
 
