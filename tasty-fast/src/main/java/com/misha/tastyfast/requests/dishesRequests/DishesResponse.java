@@ -19,6 +19,6 @@ public class DishesResponse {
     private boolean inStock;
     private byte[] cover;
     private double rate;
-
+    private Integer quantity;
 
 }
