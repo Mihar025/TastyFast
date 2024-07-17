@@ -1,4 +1,4 @@
-package com.misha.tastyfast.requests;
+package com.misha.tastyfast.requests.drinkRequests;
 
 import lombok.*;
 
@@ -19,5 +19,6 @@ public class DrinksResponse {
     private String owner;
     private boolean inStock;
     private double rate;
+    private Integer quantity;
 
 }
