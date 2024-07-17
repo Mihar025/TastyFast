@@ -30,6 +30,7 @@ public class Drink extends BaseEntity {
     private boolean inStock;
     private String category;
     private boolean isAlcohol;
+    private Integer quantity;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
