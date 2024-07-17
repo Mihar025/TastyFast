@@ -127,7 +127,7 @@ public class AuthenticationService {
             claims.put("fullName", user.getFullName());
 
             var jwtToken = jwtService.generateToken(claims, user);
-
+            saveToken(user, jwtToken);
             return AuthenticationResponse.builder()
                     .token(jwtToken).build();
         } catch (BadCredentialsException e){
@@ -135,9 +135,16 @@ public class AuthenticationService {
         } catch (DisabledException e){
             throw new AccountDissabledException("Account is disabled");
         }
+    }
 
-
-
+    private void saveToken(User user,String jwt){
+        var token = Token.builder()
+                .token(jwt)
+                .user(user)
+                .createdAt(LocalDateTime.now())
+                .expiresAt(LocalDateTime.now().plusMinutes(15))
+                .build();
+        tokenRepository.save(token);
     }
 
     public AuthenticationResponse authenticateBusinessAccount(AuthenticationRequest authenticationRequest){
@@ -199,7 +206,7 @@ public class AuthenticationService {
     public void logout(String token) {
         String tokenWithoutBearer = token.substring(7);
         Token token1 = tokenRepository.findByToken(tokenWithoutBearer)
-                .orElseThrow(() -> new RuntimeException("Invalid toke"));
+                .orElseThrow(() -> new RuntimeException("Invalid token"));
         token1.setExpiresAt(LocalDateTime.now());
         tokenRepository.save(token1);
     }
