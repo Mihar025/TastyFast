@@ -22,7 +22,8 @@ public record DishesRequest(
 
         boolean inStock,
 
-        String category
+        String category,
+        Integer quantity
 
 ) {
 }
