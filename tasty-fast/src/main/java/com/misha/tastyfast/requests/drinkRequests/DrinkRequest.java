@@ -23,7 +23,9 @@ public record DrinkRequest(
         String category,
 
         boolean inStock,
-        boolean isAlcohol
+        boolean isAlcohol,
+
+        Integer quantity
 
 ) {
 }
