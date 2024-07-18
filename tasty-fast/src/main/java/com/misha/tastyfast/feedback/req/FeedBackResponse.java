@@ -1,6 +1,5 @@
 package com.misha.tastyfast.feedback.req;
 
-import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Getter
