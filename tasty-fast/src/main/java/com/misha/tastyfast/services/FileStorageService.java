@@ -1,6 +1,8 @@
 package com.misha.tastyfast.services;
 
-import com.misha.tastyfast.model.*;
+import com.misha.tastyfast.model.Dishes;
+import com.misha.tastyfast.model.Drink;
+import com.misha.tastyfast.model.Product;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
