@@ -9,7 +9,7 @@ import com.misha.tastyfast.model.Feedback;
 import com.misha.tastyfast.model.Product;
 import com.misha.tastyfast.model.User;
 import com.misha.tastyfast.repositories.ProductRepository;
-import com.misha.tastyfast.requests.PageResponse;
+import com.misha.tastyfast.requests.pageResponse.PageResponse;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
