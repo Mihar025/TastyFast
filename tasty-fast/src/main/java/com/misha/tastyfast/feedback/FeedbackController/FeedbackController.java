@@ -3,7 +3,7 @@ package com.misha.tastyfast.feedback.FeedbackController;
 import com.misha.tastyfast.feedback.FeedbackService.FeedbackService;
 import com.misha.tastyfast.feedback.req.FeedBackRequest;
 import com.misha.tastyfast.feedback.req.FeedBackResponse;
-import com.misha.tastyfast.requests.PageResponse;
+import com.misha.tastyfast.requests.pageResponse.PageResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
