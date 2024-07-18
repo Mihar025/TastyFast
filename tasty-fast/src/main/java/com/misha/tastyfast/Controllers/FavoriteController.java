@@ -1,14 +1,14 @@
 package com.misha.tastyfast.Controllers;
 
+import com.misha.tastyfast.requests.favoriteRequests.FavoriteItemResponse;
 import com.misha.tastyfast.requests.favoriteRequests.FavoriteRequest;
 import com.misha.tastyfast.requests.favoriteRequests.FavoriteResponse;
 import com.misha.tastyfast.services.FavoriteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("favorite")
@@ -20,5 +20,11 @@ public class FavoriteController {
     public ResponseEntity<FavoriteResponse> addFavorite(@RequestBody FavoriteRequest request) {
         FavoriteResponse response = favoriteService.addToFavoriteList(request);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<FavoriteItemResponse>> getUserFavorites(Authentication authentication) {
+        List<FavoriteItemResponse> favorites = favoriteService.getUserFavorite(authentication);
+        return ResponseEntity.ok(favorites);
     }
 }
